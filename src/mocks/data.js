@@ -2,7 +2,7 @@ export const RESTAURANT_DATA = [
   {
     id: "660101",
     name: "The Square - Novotel",
-    rating: "4.1",
+    rating: "3.8",
     costForTwo: "₹2500 for two",
     cuisines: ["Multi Cuisine", "North Indian"],
     locationInfo: {
@@ -129,7 +129,7 @@ export const RESTAURANT_DATA = [
   {
     id: "34134",
     name: "Sichuan",
-    rating: "4.3",
+    rating: "3.9",
     costForTwo: "₹800 for two",
     cuisines: ["Chinese", "Sichuan"],
     locationInfo: {
@@ -194,7 +194,7 @@ export const RESTAURANT_DATA = [
   {
     id: "178368",
     name: "Spice It - IBIS Hotel ORR",
-    rating: "4.2",
+    rating: "3.5",
     costForTwo: "₹1500 for two",
     cuisines: ["Multi Cuisine", "Continental"],
     locationInfo: {
