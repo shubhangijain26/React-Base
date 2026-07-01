@@ -2,6 +2,7 @@ import { RESTAURANT_DATA } from "../mocks/data";
 import RestrauntCard from "./RestrauntCard";
 import { useState, useEffect } from "react";
 import ShimmerUI from "./ShimmerUI";
+import { Link } from "react-router";
 
 const resList = RESTAURANT_DATA;
 
@@ -14,19 +15,22 @@ export const Body = () => {
     fetchData();
   }, []);
 
-  const fetchData = () => {
-    const data = fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING",
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.914345328503295&lng=77.69390984307906&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
     );
-    // const json = data.json();
-    // console.log(json);
-
-    data
-      .then((res) => console.log(JSON.stringify(res)))
-      .catch((err) => console.log(err));
-    setTimeout(() => {
-      setRestrauntList(resList);
-    }, 1000);
+    const dynamicData = await data.json();
+    const restraunts =
+      dynamicData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
+    console.log(restraunts);
+    setRestrauntList(restraunts);
+    // data
+    //   .then((res) => {
+    //     console.log(JSON.stringify(res));
+    //     setRestrauntList(res);
+    //   })
+    //   .catch((err) => console.log(err));
   };
 
   return (
@@ -49,7 +53,12 @@ export const Body = () => {
           <ShimmerUI />
         ) : (
           restrauntList.map((restraunt) => (
-            <RestrauntCard key={restraunt.id} resData={restraunt} />
+            <Link
+              to={"/restraunt/" + restraunt.info.id}
+              key={restraunt.info.id}
+            >
+              <RestrauntCard resData={restraunt.info} />
+            </Link>
           ))
         )}
       </div>
